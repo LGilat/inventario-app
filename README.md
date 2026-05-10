@@ -21,14 +21,3 @@ Sistema de gestión de inventario completo desarrollado con **Node.js**, **Expre
 ## 🚀 Objetivo
 
 Facilitar el control y seguimiento de inventario de forma sencilla y eficiente para pequeños negocios o como proyecto de aprendizaje.
-
----
-
-¿Quieres que la adapte según lo que ya tienes implementado?
-
-Por ejemplo, dime:
-- ¿Usas base de datos? (MongoDB, MySQL, etc.)
-- ¿Tiene login de usuarios?
-- ¿Es para un tipo de negocio específico (tienda, almacén, etc.)?
-
-Así te hago una descripción más precisa y profesional.
