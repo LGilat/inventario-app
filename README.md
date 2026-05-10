@@ -44,6 +44,7 @@ Un proyecto práctico, limpio y escalable pensado para pequeñas y medianas empr
 ```bash
 git clone https://github.com/LGilat/inventario-app.git
 cd inventario-app
+``
 
 ### Backend
 cd src  # o la carpeta donde esté el backend
