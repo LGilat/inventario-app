@@ -14,8 +14,8 @@ Sistema de gestión de inventario completo desarrollado con **Node.js**, **Expre
 ## 🛠️ Tecnologías utilizadas
 
 - **Backend**: Node.js + Express
-- **Base de datos**: (MongoDB / MySQL / SQLite - según lo que estés usando)
-- **Frontend**: HTML, CSS y JavaScript vanilla (o EJS si lo estás usando)
+- **Base de datos**: (MongoDB / MySQL / Prisma sqlite)
+- **Frontend**: HTML, CSS y React
 - **Control de versiones**: Git
 
 ## 🚀 Objetivo
