@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Producto {
+  id                      Int                       @id @default(autoincrement())
+  nombre                  String
+  descripcion             String
+  categoria               String
+  precioCompra            Float
+  precioVenta             Float
+  detalleDevolucionCompra DetalleDevolucionCompra[]
+  detalleDevolucionVenta  DetalleDevolucionVenta[]
+  detallePedidoCompra     DetallePedidoCompra[]
+  detalleVenta            DetalleVenta[]
+  movimientoStock         MovimientoStock[]
+  stock                   Stock[]
+}
+
+model Proveedor {
+  id           Int            @id @default(autoincrement())
+  nombre       String
+  contacto     String
+  direccion    String
+  pedidoCompra PedidoCompra[]
+}
+
+model Cliente {
+  id        Int     @id @default(autoincrement())
+  nombre    String
+  contacto  String
+  direccion String
+  ventas    Venta[]
+}
+
+model Stock {
+  id                 Int      @id @default(autoincrement())
+  productoId         Int
+  cantidad           Int
+  ubicacion          String
+  fechaActualizacion DateTime
+  producto           Producto @relation(fields: [productoId], references: [id])
+}
+
+model PedidoCompra {
+  id                  Int                   @id @default(autoincrement())
+  proveedorId         Int
+  fechaPedido         DateTime
+  estado              String
+  detallePedidoCompra DetallePedidoCompra[]
+  devolucionCompra    DevolucionCompra[]
+  proveedor           Proveedor             @relation(fields: [proveedorId], references: [id])
+}
+
+model DetallePedidoCompra {
+  id             Int          @id @default(autoincrement())
+  pedidoCompraId Int
+  productoId     Int
+  cantidad       Int
+  precioUnitario Float
+  producto       Producto     @relation(fields: [productoId], references: [id])
+  pedidoCompra   PedidoCompra @relation(fields: [pedidoCompraId], references: [id])
+}
+
+model Venta {
+  id              Int               @id @default(autoincrement())
+  clienteId       Int
+  fechaVenta      DateTime
+  total           Float
+  detalleVenta    DetalleVenta[]
+  devolucionVenta DevolucionVenta[]
+  cliente         Cliente           @relation(fields: [clienteId], references: [id])
+}
+
+model DetalleVenta {
+  id             Int      @id @default(autoincrement())
+  ventaId        Int
+  productoId     Int
+  cantidad       Int
+  precioUnitario Float
+  producto       Producto @relation(fields: [productoId], references: [id])
+  venta          Venta    @relation(fields: [ventaId], references: [id])
+}
+
+model MovimientoStock {
+  id              Int      @id @default(autoincrement())
+  productoId      Int
+  tipoMovimiento  String
+  cantidad        Int
+  fechaMovimiento DateTime
+  producto        Producto @relation(fields: [productoId], references: [id])
+}
+
+model DevolucionVenta {
+  id                     Int                      @id @default(autoincrement())
+  ventaId                Int
+  fechaDevolucion        DateTime
+  motivo                 String
+  estado                 String
+  detalleDevolucionVenta DetalleDevolucionVenta[]
+  venta                  Venta                    @relation(fields: [ventaId], references: [id])
+}
+
+model DetalleDevolucionVenta {
+  id                Int             @id @default(autoincrement())
+  devolucionVentaId Int
+  productoId        Int
+  cantidad          Int
+  estadoProducto    String
+  producto          Producto        @relation(fields: [productoId], references: [id])
+  devolucionVenta   DevolucionVenta @relation(fields: [devolucionVentaId], references: [id])
+}
+
+model DevolucionCompra {
+  id                      Int                       @id @default(autoincrement())
+  pedidoCompraId          Int
+  fechaDevolucion         DateTime
+  motivo                  String
+  estado                  String
+  detalleDevolucionCompra DetalleDevolucionCompra[]
+  pedidoCompra            PedidoCompra              @relation(fields: [pedidoCompraId], references: [id])
+}
+
+model DetalleDevolucionCompra {
+  id                 Int              @id @default(autoincrement())
+  devolucionCompraId Int
+  productoId         Int
+  cantidad           Int
+  estadoProducto     String
+  producto           Producto         @relation(fields: [productoId], references: [id])
+  devolucionCompra   DevolucionCompra @relation(fields: [devolucionCompraId], references: [id])
+}
