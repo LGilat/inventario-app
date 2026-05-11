@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+    "postinstall": "prisma generate",
     "test": "jest",
     "start": "node app.js",
     "dev": "nodemon app.js"
