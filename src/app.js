@@ -11,7 +11,6 @@ const ventaRoutes = require("./routes/venta.routes");
 
 const app = express();
 
-app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
@@ -40,6 +39,15 @@ app.use(
 
 // importante para preflight
 app.options("*", cors());
+app.disable("etag");
+
+app.use(express.json());
+
+app.use((req, res, next) => {
+  res.setHeader("Cache-Control", "no-store");
+  next();
+});
+
 app.get("/", (req, res) => {
   res.send("¡Hola Mundo!");
 });
