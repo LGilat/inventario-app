@@ -19,7 +19,7 @@ app.use(
       "http://localhost:5174",
       "http://127.0.0.1:5173",
       "http://127.0.0.1:5174",
-      "https://inventario-frontend.vercel.app",
+      "https://inventario-app-frontend.vercel.app",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
