@@ -17,6 +17,7 @@ const allowedOrigins = [
   "http://127.0.0.1:5173",
   "http://127.0.0.1:5174",
   "https://inventario-app-frontend.vercel.app",
+  "https://glistening-unicorn-38a1dc.netlify.app",
 ];
 
 app.use(
